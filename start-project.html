@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>启动项目</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .start-button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .start-button:hover {
+      background-color: #45a049;
+    }
+    .info-box {
+      background-color: #f0f8ff;
+      border-left: 4px solid #1e90ff;
+      padding: 15px;
+      text-align: left;
+      margin-top: 20px;
+    }
+    code {
+      display: block;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>暴兵系统 - 项目启动器</h1>
+    <p>点击下方按钮启动项目，或复制命令到终端执行。</p>
+
+    <div class="button-group">
+      <button class="start-button" onclick="showCommand('dev')">启动开发服务器</button>
+      <button class="start-button" onclick="showCommand('build')">构建生产版本</button>
+      <button class="start-button" onclick="showCommand('preview')">预览生产版本</button>
+    </div>
+
+    <div class="info-box">
+      <h3>使用说明</h3>
+      <p>1. 点击上方按钮查看对应命令。</p>
+      <p>2. 复制命令到终端中执行。</p>
+      <p>3. 开发服务器启动后，访问 <code>http://localhost:5173</code> 查看项目。</p>
+      <div id="command-display"></div>
+    </div>
+  </div>
+
+  <script>
+    function showCommand(command) {
+      let cmdText = '';
+      switch(command) {
+        case 'dev':
+          cmdText = 'npm run dev';
+          break;
+        case 'build':
+          cmdText = 'npm run build';
+          break;
+        case 'preview':
+          cmdText = 'npm run preview';
+          break;
+      }
+      document.getElementById('command-display').innerHTML = `
+        <p>请在终端中执行以下命令：</p>
+        <code>${cmdText}</code>
+        <button onclick="copyToClipboard('${cmdText}')">复制命令</button>
+      `;
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        alert('命令已复制到剪贴板！');
+      }, function() {
+        alert('复制失败，请手动复制。');
+      });
+    }
+  </script>
+</body>
+</html>

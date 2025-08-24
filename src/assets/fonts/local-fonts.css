@@ -1,0 +1,19 @@
+/* 本地字体定义 */
+
+/*  fallback 字体栈 */
+:root {
+  --font-primary: 'Microsoft YaHei', 'SimHei', sans-serif;
+  /* Font Awesome图标库使用自身字体，不会与文本字体冲突 */
+  /* 如果需要为图标设置特定样式，可以添加以下变量 */
+  --font-icon: 'Font Awesome 6 Free', sans-serif;
+  --font-secondary: 'Microsoft YaHei', 'SimHei', sans-serif;
+}
+
+/* 替换全局字体 */
+body {
+  font-family: var(--font-primary);
+}
+
+.header h1 {
+  font-family: var(--font-secondary);
+}
